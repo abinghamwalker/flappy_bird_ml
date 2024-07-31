@@ -94,7 +94,7 @@ class Bird:
 
 class Pipe:
     GAP = 200
-    VEL = 10
+    VEL = 5
 
     def __init__(self, x):
         self.x = x
@@ -139,7 +139,7 @@ class Pipe:
 
 
 class Base:
-    VEL = 10
+    VEL = 5
     WIDTH = BASE_IMG.get_width()
     IMG = BASE_IMG
 
