@@ -2,6 +2,7 @@ import pygame
 import neat
 import os
 import random
+import logging
 
 pygame.font.init()
 
@@ -94,7 +95,7 @@ class Bird:
 
 class Pipe:
     GAP = 200
-    VEL = 5
+    VEL = 15
 
     def __init__(self, x):
         self.x = x
@@ -139,7 +140,7 @@ class Pipe:
 
 
 class Base:
-    VEL = 5
+    VEL = 15
     WIDTH = BASE_IMG.get_width()
     IMG = BASE_IMG
 
@@ -182,8 +183,8 @@ def draw_window(win, birds, base, pipes, score,gen,pipe_ind):
             try:
                 pygame.draw.line(win, (255,0,0), (bird.x+bird.img.get_width()/2, bird.y + bird.img.get_height()/2), (pipes[pipe_ind].x + pipes[pipe_ind].PIPE_TOP.get_width()/2, pipes[pipe_ind].height), 5)
                 pygame.draw.line(win, (255,0,0), (bird.x+bird.img.get_width()/2, bird.y + bird.img.get_height()/2), (pipes[pipe_ind].x + pipes[pipe_ind].PIPE_BOTTOM.get_width()/2, pipes[pipe_ind].bottom), 5)
-            except:
-                pass
+            except ValueError as e:
+                logging.error(f"An error occurred: {e}")
         bird.draw(win)
 
     score_label = STAT_FONT.render("Score: " + str(score), 1, (255, 255, 255))
